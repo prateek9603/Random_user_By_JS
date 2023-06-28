@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    #img{
+        width :35%;
+        text-align: center;
+        margin: auto;
+        margin-top: 30vh;
+    }
+    #info{
+        text-align: center;
+    }
+</style>
+<body>
+    
+    <div id="wrapper">
+        <div id="img">
+            
+        </div>
+        <div id="info">
+
+        </div>
+
+        <div id="info">
+            <button id="Email">Email</button>
+            <button id="Age">Age</button>
+            <button id="Phone">phone</button>
+        </div>
+
+        </div>
+
+
+
+
+<script>
+    fetch("https://randomuser.me/api/")
+        .then((photo)=>{return photo.json()})
+        .then((result)=>{console.log(result);
+            RanImg(result)})
+         
+
+        function RanImg(params){
+            let image = document.createElement("img")
+            image.src =params.results[0].picture.large;
+            document.querySelector("#img").appendChild(image);
+            let names = document.createElement("h2")
+            names.innerText = params.results[0].name.first +" "+params.results[0].name.last;
+            document.querySelector("#img").appendChild(names);
+            let other = document.createElement("h3");
+            let email = document.querySelector("#Email");
+            email.onclick = ()=>{
+                other.innerHTML =""
+                other.innerHTML =params.results[0].email
+                document.querySelector("#info").appendChild(other);
+            }
+            let age = document.querySelector("#Age")
+            age.onclick = ()=>{
+                other.innerHTML =""
+                other.innerHTML =params.results[0].dob.age
+                document.querySelector("#info").appendChild(other);
+            }
+            let phone = document.querySelector("#Phone")
+            phone.onclick = ()=>{
+                other.innerHTML =""
+                other.innerHTML =params.results[0].phone
+                document.querySelector("#info").appendChild(other);
+            }    
+        }
+</script>
+
+
+</body>
+</html>
+
+
+<!-- let email = document.querySelectorAll("button")[0]
+        let age = document.querySelectorAll("button")[1]
+        let phone = document.querySelectorAll("button")[2]
+       fetch("https://randomuser.me/api/")
+        .then((photo)=>{return photo.json()})
+        .then((result)=>{console.log(result);
+            RanImg(result)})
+         
+
+        function RanImg(params){
+            let image = document.createElement("img")
+            image.src =params.results[0].picture.large;
+            document.querySelector(".container").appendChild(image);
+            let names = document.createElement("h2")
+            names.innerText = params.results[0].name.first +" "+params.results[0].name.last;
+            document.querySelector(".container").appendChild(names);
+
+            let other = document.createElement("h3");
+            email.onclick = ()=>{
+                other.innerHTML =""
+                other.innerHTML =params.results[0].email
+                document.querySelector(".container").appendChild(other);
+            }
+            age.onclick = ()=>{
+                other.innerHTML =""
+                other.innerHTML =params.results[0].dob.age
+                document.querySelector(".container").appendChild(other);
+            }
+            phone.onclick = ()=>{
+                other.innerHTML =""
+                other.innerHTML =params.results[0].phone
+                document.querySelector(".container").appendChild(other);
+            }
+        } -->
